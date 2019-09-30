@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -15,13 +17,10 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
-public class VerifyAdmin {
+public class AddAdmin {
 
 	private JFrame frame;
-	
 
 	/**
 	 * Launch the application.
@@ -30,7 +29,7 @@ public class VerifyAdmin {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					VerifyAdmin window = new VerifyAdmin();
+					AddAdmin window = new AddAdmin();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -42,7 +41,7 @@ public class VerifyAdmin {
 	/**
 	 * Create the application.
 	 */
-	public VerifyAdmin() {
+	public AddAdmin() {
 		initialize();
 	}
 
@@ -82,7 +81,7 @@ public class VerifyAdmin {
 		textField.setFont(new Font("Times New Roman", Font.BOLD, 18));
 		textField.setColumns(10);
 		
-		JButton btnNewButton = new JButton("Login");
+		JButton btnNewButton = new JButton("add");
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -140,7 +139,7 @@ public class VerifyAdmin {
 					.addContainerGap(91, Short.MAX_VALUE))
 		);
 		
-		JLabel lblNewLabel = new JLabel("admin login");
+		JLabel lblNewLabel = new JLabel("Add admin");
 		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setHorizontalTextPosition(SwingConstants.CENTER);
@@ -164,5 +163,4 @@ public class VerifyAdmin {
 		panel_1.setLayout(gl_panel_1);
 		panel.setLayout(gl_panel);
 		frame.getContentPane().setLayout(groupLayout);
-	}
-}
+	}}

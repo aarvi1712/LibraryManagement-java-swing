@@ -64,6 +64,12 @@ public class firstpage {
 		panel_3.setLayout(null);
 		
 		JLabel lblLibrarian = new JLabel("Librarian");
+		lblLibrarian.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				VerifyLibrarian.main(new String[]{});
+			}
+		});
 		lblLibrarian.setVerticalTextPosition(SwingConstants.BOTTOM);
 		lblLibrarian.setFont(new Font("Times New Roman", Font.BOLD, 18));
 		lblLibrarian.setIcon(new ImageIcon("C:\\Users\\Anurag Singh\\git\\LibraryManagement-java-swing\\linrarymanagement\\image\\administrator_male_240px.png"));
@@ -98,7 +104,8 @@ public class firstpage {
 		lblAdmin.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				System.out.println(2);
+				VerifyAdmin.main(new String[]{});
+				frame.dispose();
 			}
 		});
 		lblAdmin.setFont(new Font("Times New Roman", Font.BOLD, 18));

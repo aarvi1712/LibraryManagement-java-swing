@@ -14,14 +14,12 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class VerifyAdmin {
+public class VerifyLibrarian {
 
 	private JFrame frame;
-	
 
 	/**
 	 * Launch the application.
@@ -30,7 +28,7 @@ public class VerifyAdmin {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					VerifyAdmin window = new VerifyAdmin();
+					VerifyLibrarian window = new VerifyLibrarian();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -42,7 +40,7 @@ public class VerifyAdmin {
 	/**
 	 * Create the application.
 	 */
-	public VerifyAdmin() {
+	public VerifyLibrarian() {
 		initialize();
 	}
 
@@ -70,14 +68,14 @@ public class VerifyAdmin {
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(148, 0, 211));
 		
-		JLabel lblNewLabel_1 = new JLabel("admin id");
+		JLabel lblNewLabel_1 = new JLabel("librarian name");
 		lblNewLabel_1.setFont(new Font("Times New Roman", Font.BOLD, 18));
 		lblNewLabel_1.setBackground(new Color(255, 255, 255));
 		
 		JLabel lblPassword = new JLabel("password");
 		lblPassword.setFont(new Font("Times New Roman", Font.BOLD, 18));
 		lblPassword.setBackground(Color.WHITE);
-		JPasswordField passwordField = new JPasswordField();
+		final JPasswordField  passwordField = new JPasswordField();;
 		JTextField textField = new JTextField();
 		textField.setFont(new Font("Times New Roman", Font.BOLD, 18));
 		textField.setColumns(10);
@@ -86,11 +84,10 @@ public class VerifyAdmin {
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				
-				String id=textField.getText();
+				String name=textField.getText();
 				String password=String.valueOf(passwordField.getPassword());
-				if(id.equals("admin")&&password.equals("admin123")){
-					AdminPage.main(new String[]{});
+				if(name.equals("anurag")&&password.equals("ambika123")){
+					LibrarianPage.main(new String[]{});
 					frame.dispose();
 				}else{
 					
@@ -103,24 +100,24 @@ public class VerifyAdmin {
 		btnNewButton.setFont(new Font("Times New Roman", Font.BOLD, 18));
 		btnNewButton.setForeground(new Color(245, 245, 245));
 		
-		
+	
 		passwordField.setFont(new Font("Times New Roman", Font.BOLD, 18));
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 768, Short.MAX_VALUE)
 				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(190)
+					.addGap(169)
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 93, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblNewLabel_1)
 						.addComponent(lblPassword, GroupLayout.PREFERRED_SIZE, 93, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(passwordField)
-						.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
+					.addGap(35)
+					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
+						.addComponent(passwordField, 207, 207, Short.MAX_VALUE)
+						.addGroup(gl_panel.createSequentialGroup()
 							.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 112, GroupLayout.PREFERRED_SIZE)
 							.addGap(85))
-						.addComponent(textField, Alignment.TRAILING))
+						.addComponent(textField, GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE))
 					.addGap(243))
 		);
 		gl_panel.setVerticalGroup(
@@ -133,14 +130,14 @@ public class VerifyAdmin {
 						.addComponent(textField, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
 					.addGap(38)
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblPassword, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
-						.addComponent(passwordField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(passwordField, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblPassword, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE))
 					.addGap(56)
 					.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap(91, Short.MAX_VALUE))
 		);
 		
-		JLabel lblNewLabel = new JLabel("admin login");
+		JLabel lblNewLabel = new JLabel("librarian login");
 		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setHorizontalTextPosition(SwingConstants.CENTER);
@@ -150,16 +147,16 @@ public class VerifyAdmin {
 		gl_panel_1.setHorizontalGroup(
 			gl_panel_1.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_1.createSequentialGroup()
-					.addGap(219)
+					.addGap(221)
 					.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 304, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(235, Short.MAX_VALUE))
+					.addContainerGap(243, Short.MAX_VALUE))
 		);
 		gl_panel_1.setVerticalGroup(
 			gl_panel_1.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_1.createSequentialGroup()
-					.addGap(21)
+				.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
+					.addContainerGap(31, Short.MAX_VALUE)
 					.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(21, Short.MAX_VALUE))
+					.addContainerGap())
 		);
 		panel_1.setLayout(gl_panel_1);
 		panel.setLayout(gl_panel);

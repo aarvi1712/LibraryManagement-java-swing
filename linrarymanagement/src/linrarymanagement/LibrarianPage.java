@@ -146,7 +146,7 @@ public class LibrarianPage {
 		);
 		panel_2.setLayout(gl_panel_2);
 		
-		JLabel lblNewLabel = new JLabel("admin section");
+		JLabel lblNewLabel = new JLabel("librarian section");
 		lblNewLabel.setForeground(new Color(255, 255, 255));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setHorizontalTextPosition(SwingConstants.CENTER);
