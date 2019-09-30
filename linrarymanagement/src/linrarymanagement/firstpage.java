@@ -12,6 +12,8 @@ import javax.swing.JPanel;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class firstpage {
 
@@ -64,7 +66,7 @@ public class firstpage {
 		JLabel lblLibrarian = new JLabel("Librarian");
 		lblLibrarian.setVerticalTextPosition(SwingConstants.BOTTOM);
 		lblLibrarian.setFont(new Font("Times New Roman", Font.BOLD, 18));
-		lblLibrarian.setIcon(new ImageIcon("D:\\eclipsejavacodes\\linrarymanagement\\image\\administrator_male_240px.png"));
+		lblLibrarian.setIcon(new ImageIcon("C:\\Users\\Anurag Singh\\git\\LibraryManagement-java-swing\\linrarymanagement\\image\\administrator_male_240px.png"));
 		lblLibrarian.setHorizontalTextPosition(SwingConstants.CENTER);
 		lblLibrarian.setHorizontalAlignment(SwingConstants.CENTER);
 		lblLibrarian.setBounds(10, -23, 226, 268);
@@ -93,13 +95,19 @@ public class firstpage {
 		panel_2.setLayout(null);
 		
 		JLabel lblAdmin = new JLabel("Admin");
+		lblAdmin.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				System.out.println(2);
+			}
+		});
 		lblAdmin.setFont(new Font("Times New Roman", Font.BOLD, 18));
 		lblAdmin.setVerticalTextPosition(SwingConstants.BOTTOM);
 		lblAdmin.setHorizontalTextPosition(SwingConstants.CENTER);
 		lblAdmin.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAdmin.setBounds(10, -23, 238, 268);
 		panel_2.add(lblAdmin);
-		lblAdmin.setIcon(new ImageIcon("D:\\eclipsejavacodes\\linrarymanagement\\image\\admin_settings_male_240px.png"));
+		lblAdmin.setIcon(new ImageIcon("C:\\Users\\Anurag Singh\\git\\LibraryManagement-java-swing\\linrarymanagement\\image\\admin_settings_male_240px.png"));
 		
 		JLabel lblLibraryManagementSystem = new JLabel("Library Management System");
 		lblLibraryManagementSystem.setForeground(new Color(255, 255, 255));
@@ -110,7 +118,7 @@ public class firstpage {
 		lblNewLabelfv.setHorizontalTextPosition(SwingConstants.CENTER);
 		lblNewLabelfv.setIconTextGap(2);
 		lblNewLabelfv.setFont(new Font("Times New Roman", Font.BOLD, 17));
-		lblNewLabelfv.setIcon(new ImageIcon("D:\\eclipsejavacodes\\linrarymanagement\\image\\library_64px.png"));
+		lblNewLabelfv.setIcon(new ImageIcon("C:\\Users\\Anurag Singh\\git\\LibraryManagement-java-swing\\linrarymanagement\\image\\library_64px.png"));
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(
 			gl_panel_1.createParallelGroup(Alignment.LEADING)
