@@ -6,6 +6,10 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -68,7 +72,7 @@ public class DeleteAdmin {
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(148, 0, 211));
 		
-		JLabel lblNewLabel_1 = new JLabel("librarian name");
+		JLabel lblNewLabel_1 = new JLabel("admin id");
 		lblNewLabel_1.setFont(new Font("Times New Roman", Font.BOLD, 18));
 		lblNewLabel_1.setBackground(new Color(255, 255, 255));
 		
@@ -86,13 +90,28 @@ public class DeleteAdmin {
 			public void mouseClicked(MouseEvent arg0) {
 				String name=textField.getText();
 				String password=String.valueOf(passwordField.getPassword());
-				if(name.equals("anurag")&&password.equals("ambika123")){
-					LibrarianPage.main(new String[]{});
-					frame.dispose();
-				}else{
+				try {
+					Class.forName("com.mysql.jdbc.Driver");
+					Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/library", "root", "root");
+					Statement stm = con.createStatement();
+					ResultSet rs = stm.executeQuery("select *from admin_login");
+					String  del="delete from admin_login where login_id=name";
+					while (rs.next()) {
+						String id = rs.getString("login_id");
+						String pass = rs.getString("password");
+						
+						
 					
-					textField.setText("");
-					passwordField.setText("");
+						if(name.contentEquals(id) && (password.contentEquals(pass)))
+						{
+							stm.executeUpdate(del); 
+						}
+						
+						
+						
+					}
+				} catch (Exception ex) {
+					ex.printStackTrace();
 				}
 				}
 		});

@@ -15,8 +15,14 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
+
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 public class VerifyAdmin {
 
@@ -89,14 +95,43 @@ public class VerifyAdmin {
 				
 				String id=textField.getText();
 				String password=String.valueOf(passwordField.getPassword());
-				if(id.equals("admin")&&password.equals("admin123")){
-					AdminPage.main(new String[]{});
-					frame.dispose();
-				}else{
+				//boolean match=false;
+				try {
+            		
 					
+					Class.forName("com.mysql.jdbc.Driver");
+					java.sql.Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/library","root","root");
+					System.out.println("database connection stablished");
+					
+				
+					Statement stm = con.createStatement();
+					ResultSet rs = stm.executeQuery("SELECT * FROM admin_login");
+					while(rs.next())
+					{
+						String lid =( rs.getString("login_id")).trim();
+						String pas = rs.getString("password").trim();
+						if((id.equals(lid)) &&( password.equals(pas)))
+						{
+							AdminPage.main(new String[]{});
+							frame.dispose();
+						
+						}
+						
+						
+						
+						}
 					textField.setText("");
 					passwordField.setText("");
+					con.close();
+					
+					}
+				catch(Exception ex)
+				{
+					ex.printStackTrace();
 				}
+				
+				
+			
 				}
 		});
 		btnNewButton.setBackground(new Color(138, 43, 226));

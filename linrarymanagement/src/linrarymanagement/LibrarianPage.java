@@ -13,6 +13,10 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class LibrarianPage {
 
@@ -80,69 +84,58 @@ public class LibrarianPage {
 					.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 398, GroupLayout.PREFERRED_SIZE))
 		);
 		
-		JButton btnNewButton = new JButton("ADD BOOKS");
-		btnNewButton.setForeground(new Color(255, 255, 255));
-		btnNewButton.setBackground(new Color(138, 43, 226));
-		btnNewButton.setFont(new Font("Times New Roman", Font.BOLD, 18));
-		
-		JButton btnViewBooks = new JButton("VIEW BOOKS");
+		JButton btnViewBooks = new JButton("ADD/DELETE/VIEW BOOKS");
+		btnViewBooks.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+			}
+		});
 		btnViewBooks.setForeground(Color.WHITE);
-		btnViewBooks.setFont(new Font("Times New Roman", Font.BOLD, 18));
+		btnViewBooks.setFont(new Font("Times New Roman", Font.BOLD, 12));
 		btnViewBooks.setBackground(new Color(138, 43, 226));
 		
-		JButton button_1 = new JButton("ADD BOOKS");
-		button_1.setForeground(Color.WHITE);
-		button_1.setFont(new Font("Times New Roman", Font.BOLD, 18));
-		button_1.setBackground(new Color(138, 43, 226));
+		JButton btnIssueBooks = new JButton("ISSUE/RETURN BOOKS");
+		btnIssueBooks.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		btnIssueBooks.setForeground(Color.WHITE);
+		btnIssueBooks.setFont(new Font("Times New Roman", Font.BOLD, 12));
+		btnIssueBooks.setBackground(new Color(138, 43, 226));
 		
 		JButton btnLogout = new JButton("LOGOUT");
+		btnLogout.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				firstpage.main(new String[] {});
+				frame.dispose();
+			}
+		});
 		btnLogout.setForeground(Color.WHITE);
-		btnLogout.setFont(new Font("Times New Roman", Font.BOLD, 18));
+		btnLogout.setFont(new Font("Times New Roman", Font.BOLD, 12));
 		btnLogout.setBackground(new Color(138, 43, 226));
-		
-		JButton btnDeleteBooks = new JButton("DELETE BOOKS");
-		btnDeleteBooks.setForeground(Color.WHITE);
-		btnDeleteBooks.setFont(new Font("Times New Roman", Font.BOLD, 18));
-		btnDeleteBooks.setBackground(new Color(138, 43, 226));
-		
-		JButton btnReturnBooks = new JButton("RETURN BOOKS");
-		btnReturnBooks.setForeground(Color.WHITE);
-		btnReturnBooks.setFont(new Font("Times New Roman", Font.BOLD, 18));
-		btnReturnBooks.setBackground(new Color(138, 43, 226));
 		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
 		gl_panel_2.setHorizontalGroup(
 			gl_panel_2.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_2.createSequentialGroup()
-					.addGap(183)
-					.addGroup(gl_panel_2.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 156, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnDeleteBooks, GroupLayout.PREFERRED_SIZE, 156, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnReturnBooks, GroupLayout.PREFERRED_SIZE, 156, GroupLayout.PREFERRED_SIZE))
-					.addGap(31)
-					.addGroup(gl_panel_2.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnLogout, GroupLayout.PREFERRED_SIZE, 156, GroupLayout.PREFERRED_SIZE)
-						.addComponent(button_1, GroupLayout.PREFERRED_SIZE, 156, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnViewBooks, GroupLayout.PREFERRED_SIZE, 156, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(232, Short.MAX_VALUE))
+					.addGap(159)
+					.addGroup(gl_panel_2.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(btnLogout, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(btnIssueBooks, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(btnViewBooks, GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE))
+					.addContainerGap(255, Short.MAX_VALUE))
 		);
 		gl_panel_2.setVerticalGroup(
 			gl_panel_2.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_2.createSequentialGroup()
 					.addGap(95)
-					.addGroup(gl_panel_2.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnViewBooks, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addGroup(gl_panel_2.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel_2.createSequentialGroup()
-							.addComponent(button_1, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE)
-							.addGap(18)
-							.addComponent(btnLogout, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_panel_2.createSequentialGroup()
-							.addComponent(btnDeleteBooks, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE)
-							.addGap(18)
-							.addComponent(btnReturnBooks, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(96, Short.MAX_VALUE))
+					.addComponent(btnViewBooks, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
+					.addGap(31)
+					.addComponent(btnIssueBooks, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
+					.addGap(38)
+					.addComponent(btnLogout, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(121, Short.MAX_VALUE))
 		);
 		panel_2.setLayout(gl_panel_2);
 		

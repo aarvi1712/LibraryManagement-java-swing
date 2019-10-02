@@ -6,6 +6,7 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.*;
 
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -18,10 +19,14 @@ import javax.swing.SwingConstants;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+
+
+
 public class AddAdmin {
 
 	private JFrame frame;
-
+	
+ 
 	/**
 	 * Launch the application.
 	 */
@@ -88,14 +93,33 @@ public class AddAdmin {
 				
 				String id=textField.getText();
 				String password=String.valueOf(passwordField.getPassword());
-				if(id.equals("admin")&&password.equals("admin123")){
-					AdminPage.main(new String[]{});
-					frame.dispose();
-				}else{
+				
+				try {
+			                                        		
+				
+				Class.forName("com.jdbc.mysql.Driver");
+				 Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/library","root","root");
+				System.out.println("database connection stablished");
+				
+			
+				String query1="INSERT INTO admin_login (login_id,password) VALUES(?,?)";
+				PreparedStatement stmp=(PreparedStatement) con.prepareStatement(query1);
+				
+				stmp.setString(1,id);
+				stmp.setString(2,password);
+				
+			stmp.executeUpdate();
+				
+	}
+			catch(Exception ex)
+			{
+				ex.printStackTrace();
+			}
+			
 					
 					textField.setText("");
 					passwordField.setText("");
-				}
+				
 				}
 		});
 		btnNewButton.setBackground(new Color(138, 43, 226));

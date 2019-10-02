@@ -122,6 +122,8 @@ public class AdminPage {
 		btnViewAdmin.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
+				ViewAdmin.main(new String[] {});
+				frame.dispose();
 			}
 		});
 		btnViewAdmin.setForeground(Color.WHITE);

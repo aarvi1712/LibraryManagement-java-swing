@@ -6,6 +6,10 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -15,11 +19,17 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JTable;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class ViewAdmin {
 
 	private JFrame frame;
+	private DefaultTableModel model;
+	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -58,25 +68,57 @@ public class ViewAdmin {
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addComponent(panel, GroupLayout.DEFAULT_SIZE, 582, Short.MAX_VALUE)
+				.addComponent(panel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addComponent(panel, GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+				.addComponent(panel, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 510, Short.MAX_VALUE)
 		);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(148, 0, 211));;
+		
+		 model = new DefaultTableModel();
+		table = new JTable(model);
+		//JTableHeader header=table.getTableHeader();
+		
+		table.setFont(new Font("Tahoma", Font.BOLD, 16));
+		  model.addColumn("user id");
+		    model.addColumn("password");
+		    // Create the first row
+		    try {
+				Class.forName("com.mysql.jdbc.Driver");
+				Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/library", "root", "root");
+				Statement stm = con.createStatement();
+				ResultSet rs = stm.executeQuery("SELECT * FROM admin_login");
+				int p=0;
+				while (rs.next()) {
+					
+					String id = rs.getString("login_id");
+				String password = rs.getString("password");
+					 model.insertRow(p, new Object[] { id,password });
+					p++;
+				}
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+		  
+		
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 768, Short.MAX_VALUE)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(43)
+					.addComponent(table, GroupLayout.PREFERRED_SIZE, 685, GroupLayout.PREFERRED_SIZE)
+					.addGap(40))
 		);
 		gl_panel.setVerticalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
 					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 104, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(406, Short.MAX_VALUE))
+					.addPreferredGap(ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+					.addComponent(table, GroupLayout.PREFERRED_SIZE, 356, GroupLayout.PREFERRED_SIZE))
 		);
 		
 		JLabel lblNewLabel = new JLabel("ADMINS");
