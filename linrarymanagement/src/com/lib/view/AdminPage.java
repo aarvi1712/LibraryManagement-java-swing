@@ -1,4 +1,4 @@
-package linrarymanagement;
+package com.lib.view;
 
 import java.awt.Color;
 import java.awt.Component;

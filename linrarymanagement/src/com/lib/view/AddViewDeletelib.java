@@ -1,11 +1,8 @@
-package linrarymanagement;
+package com.lib.view;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -16,19 +13,21 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.table.DefaultTableModel;
+
+import com.lib.dao.LibrarianDao;
+
 import javax.swing.JTable;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class AddViewDeletelib {
 
 	private JFrame frame;
 	private JTextField textField;
-	private JTable table;
+	private static JTable table;
 
 	/**
 	 * Launch the application.
@@ -88,10 +87,28 @@ public class AddViewDeletelib {
 		panel_1.setLayout(gl_panel_1);
 		
 		JButton btnNewButton = new JButton("Add");
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				String bname=textField.getText();
+				LibrarianDao.create(bname);
+				AddViewDeletelib.main(new String[] {});
+				frame.dispose();
+			}
+		});
 		btnNewButton.setBackground(new Color(240, 255, 240));
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
 		JButton btnNewButton_1 = new JButton("delete");
+		btnNewButton_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				String bname=textField.getText();
+				LibrarianDao.deletee(bname);
+				AddViewDeletelib.main(new String[] {});
+				frame.dispose();
+			}
+		});
 		btnNewButton_1.setBackground(new Color(240, 255, 255));
 		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
@@ -101,28 +118,9 @@ public class AddViewDeletelib {
 		
 		JLabel lblNewLabel = new JLabel("book name");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 11));
-		DefaultTableModel model; model = new DefaultTableModel();
-		table = new JTable(model);
-		table.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		  model.addColumn("id");
-		    model.addColumn("book name");
-		    try {
-				Class.forName("com.mysql.jdbc.Driver");
-				Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/library", "root", "root");
-				Statement stm = con.createStatement();
-				ResultSet rs = stm.executeQuery("SELECT * FROM books_deal");
-				int p=0;
-				while (rs.next()) {
-					
-					
-				String bookname = rs.getString("book_name");
-					 model.insertRow(p, new Object[] { p,bookname });
-					p++;
-				}
-			} catch (Exception ex) {
-				ex.printStackTrace();
-			}
-		  
+
+		createTable();
+		
 		    
 		    
 		GroupLayout gl_panel = new GroupLayout(panel);
@@ -159,5 +157,30 @@ public class AddViewDeletelib {
 		);
 		panel.setLayout(gl_panel);
 		frame.getContentPane().setLayout(groupLayout);
+	}
+	public static void createTable()
+	{
+		DefaultTableModel model; model = new DefaultTableModel();
+		table = new JTable(model);
+		table.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		  model.addColumn("id");
+		    model.addColumn("book name");
+		    try {
+				Class.forName("com.mysql.jdbc.Driver");
+				Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/library", "root", "root");
+				Statement stm = con.createStatement();
+				ResultSet rs = stm.executeQuery("SELECT * FROM books_deal");
+				int p=0;
+				while (rs.next()) {
+					
+				
+				String bookname = rs.getString("book_name");
+					 model.insertRow(p, new Object[] { p,bookname });
+					p++;
+				}
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+		  
 	}
 }

@@ -1,4 +1,4 @@
-package linrarymanagement;
+package com.lib.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;

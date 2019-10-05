@@ -1,26 +1,26 @@
-package linrarymanagement;
+package com.lib.view;
 
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
 import javax.swing.GroupLayout;
-import javax.swing.JButton;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
+//import javax.swing.JPasswordField;
+//import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.JTableHeader;
+
+import com.lib.dao.Dao;
+//import javax.swing.table.JTableHeader;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JTable;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -85,23 +85,26 @@ public class ViewAdmin {
 		table.setFont(new Font("Tahoma", Font.BOLD, 16));
 		  model.addColumn("user id");
 		    model.addColumn("password");
-		    // Create the first row
-		    try {
-				Class.forName("com.mysql.jdbc.Driver");
-				Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/library", "root", "root");
-				Statement stm = con.createStatement();
-				ResultSet rs = stm.executeQuery("SELECT * FROM admin_login");
-				int p=0;
+		    try (Connection con = Dao.getcon();) {
+		    	Statement ps = con.createStatement();
+				ResultSet rs = ps.executeQuery("SELECT * FROM admin_login");
 				while (rs.next()) {
 					
-					String id = rs.getString("login_id");
-				String password = rs.getString("password");
-					 model.insertRow(p, new Object[] { id,password });
-					p++;
+					int p=0;
+					String id=rs.getString("login_id");
+					String pas=rs.getString("password");	
+						 
+						model.insertRow(p, new Object[] { id,pas });
+						p++;
+					}
+				} catch (Exception ex) {
+					ex.printStackTrace();
 				}
-			} catch (Exception ex) {
-				ex.printStackTrace();
-			}
+				
+		    
+		//  AdminDao.view(model);
+		    // Create the first row
+		    
 		  
 		
 		GroupLayout gl_panel = new GroupLayout(panel);
